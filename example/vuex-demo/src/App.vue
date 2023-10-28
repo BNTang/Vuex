@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!--    {{ this.$store.state.name }}-->
+    <HelloWorld/>
   </div>
 </template>
 
@@ -12,6 +12,9 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted() {
+    console.log(this.$store);
   }
 }
 </script>
