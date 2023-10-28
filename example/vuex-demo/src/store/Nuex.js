@@ -27,7 +27,7 @@ const install = (Vue, options) => {
 
 class Store {
     constructor(options) {
-        this.options = options;
+        this.state = options.state;
     }
 }
 
