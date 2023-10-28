@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-<!--    {{ this.$store.state.name }}-->
+    {{ this.$store.state.name }}
     <HelloWorld/>
   </div>
 </template>
