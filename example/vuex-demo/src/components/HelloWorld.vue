@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="this.$store.state.name"/>
+    <p>{{ this.$store.getters.myName }}</p>
   </div>
 </template>
 

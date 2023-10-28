@@ -28,6 +28,20 @@ const install = (Vue, options) => {
 class Store {
     constructor(options) {
         this.state = options.state;
+
+        // 1.拿到传递进来的getters
+        let getters = options.getters || {};
+        // 2.在Store上新增一个getters的属性
+        this.getters = {};
+        // 3.将传递进来的getters中的方法添加到当前Store的getters上
+        for (let key in getters) {
+            Object.defineProperty(this.getters, key, {
+                get: () => {
+                    // 4.将getters中的方法执行, 并且将state传递过去
+                    return getters[key](this.state);
+                }
+            })
+        }
     }
 }
 

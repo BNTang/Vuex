@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{ this.$store.state.name }}
+    <p>{{ this.$store.getters.myName }}</p>
     <HelloWorld/>
   </div>
 </template>
