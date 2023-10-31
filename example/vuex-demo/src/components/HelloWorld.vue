@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <p>{{ this.$store.state.num }}</p>
+    <p>{{ this.$store.state.age }}</p>
     <button @click="myFn">我是按钮</button>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     myFn() {
-      this.$store.commit('addNum', 10);
+      this.$store.dispatch('asyncAddAge', 10);
     },
   }
 }
