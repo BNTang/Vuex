@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <p>{{ this.$store.getters.myName }}</p>
+    <p>{{ this.$store.state.num }}</p>
+    <button @click="myFn">我是按钮</button>
   </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
   },
   mounted() {
     console.log(this.$store);
+  },
+  methods: {
+    myFn() {
+      this.$store.commit('addNum', 10);
+    },
   }
 }
 </script>

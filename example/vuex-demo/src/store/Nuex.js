@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 /**
  * install方法会在外界调用Vue.use的时候执行
  * 并且在执行的时候会把Vue实例和一些额外的参数传递给我们
@@ -27,8 +29,17 @@ const install = (Vue, options) => {
 
 class Store {
     constructor(options) {
-        this.state = options.state;
+        // this.state = options.state;
+        Vue.util.defineReactive(this, 'state', options.state);
 
+        // 将传递进来的 getters 放到 Store 上
+        this.initGetters(options);
+
+        // 将传递进来的 mutations 放到 Store 上
+        this.initMutations(options);
+    }
+
+    initGetters(options) {
         // 1.拿到传递进来的getters
         let getters = options.getters || {};
         // 2.在Store上新增一个getters的属性
@@ -41,6 +52,23 @@ class Store {
                     return getters[key](this.state);
                 }
             })
+        }
+    }
+
+    commit(type, payload) {
+        this.mutations[type](payload);
+    }
+
+    initMutations(options) {
+        // 1.拿到传递进来的mutations
+        let mutations = options.mutations || {};
+        // 2.在Store上新增一个mutations的属性
+        this.mutations = {};
+        // 3.将传递进来的mutations中的方法添加到当前Store的mutations上
+        for (let key in mutations) {
+            this.mutations[key] = (payload) => {
+                mutations[key](this.state, payload);
+            }
         }
     }
 }
