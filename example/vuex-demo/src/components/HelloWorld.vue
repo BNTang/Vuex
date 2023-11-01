@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    <p>{{ this.$store.state.age }}</p>
-    <button @click="myFn">我是按钮</button>
+    <p>{{ this.$store.state.account.name }}</p>
   </div>
 </template>
 

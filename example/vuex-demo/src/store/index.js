@@ -4,11 +4,25 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
+let home = {
+    state: {
+        name: '首页'
+    },
+    getters: {},
+    mutations: {},
+    actions: {}
+}
+let account = {
+    state: {
+        name: '账户'
+    },
+    getters: {},
+    mutations: {},
+    actions: {}
+}
 export default new Vuex.Store({
     state: {
-        name: 'BNTang',
-        num: 0,
-        age: 0
+        globalName: 'BNTang',
     },
     getters: {
         myName(state) {
@@ -40,6 +54,7 @@ export default new Vuex.Store({
          * @param payload 载荷
          */
         asyncAddAge({commit}, payload) {
+            console.log(this);
             // 模拟异步操作
             setTimeout(() => {
                 // 通过commit调用mutations中的方法
@@ -47,5 +62,8 @@ export default new Vuex.Store({
             }, 3000);
         }
     },
-    modules: {}
+    modules: {
+        home: home,
+        account: account
+    }
 });

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <p>{{ this.$store.getters.myName }}</p>
     <HelloWorld/>
   </div>
 </template>
