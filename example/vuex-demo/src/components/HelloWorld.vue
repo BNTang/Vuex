@@ -1,43 +1,46 @@
 <template>
   <div class="hello">
+    <p>{{ this.$store.state.globalName }}</p>
+    <p>{{ this.$store.getters.getGlobalName }}</p>
+    <button @click="globalFn1">同步操作</button>
+    <button @click="globalFn2">异步操作</button>
+    <hr/>
+    <p>{{ this.$store.state.home.name }}</p>
+    <p>{{ this.$store.getters.getHomeName }}</p>
+    <button @click="homeFn1">同步操作</button>
+    <button @click="homeFn2">异步操作</button>
+    <hr/>
     <p>{{ this.$store.state.account.name }}</p>
+    <p>{{ this.$store.getters.getAccountName }}</p>
+    <button @click="accountFn1">同步操作</button>
+    <button @click="accountFn2">异步操作</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  mounted() {
-    console.log(this.$store);
-  },
   methods: {
-    myFn() {
-      this.$store.dispatch('asyncAddAge', 10);
+    globalFn1() {
+      this.$store.commit('changeGlobalName', 10);
     },
+    globalFn2() {
+      this.$store.dispatch('asyncChangeGlobalName', 5);
+    },
+    homeFn1() {
+      this.$store.commit('changeHomeName', 10);
+    },
+    homeFn2() {
+      this.$store.dispatch('asyncChangeHomeName', 5);
+    },
+    accountFn1() {
+      this.$store.commit('changeAccountName', 10);
+    },
+    accountFn2() {
+      this.$store.dispatch('asyncChangeAccountName', 5);
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
