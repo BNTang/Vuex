@@ -26,6 +26,28 @@ let home = {
         }
     }
 }
+let login = {
+    state: {
+        name: '登录'
+    },
+    getters: {
+        getLoginName(state) {
+            return state.name + '333333';
+        }
+    },
+    mutations: {
+        changeLoginName(state, payload) {
+            state.name += payload;
+        }
+    },
+    actions: {
+        asyncChangeLoginName({commit}, payload) {
+            setTimeout(() => {
+                commit('changeLoginName', payload);
+            }, 1000);
+        }
+    }
+}
 let account = {
     state: {
         name: '账户'
@@ -46,6 +68,9 @@ let account = {
                 commit('changeAccountName', payload);
             }, 1000);
         }
+    },
+    modules: {
+        login: login
     }
 }
 export default new Vuex.Store({
