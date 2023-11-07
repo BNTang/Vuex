@@ -27,6 +27,40 @@ const install = (Vue, options) => {
     });
 }
 
+class ModuleCollection {
+    constructor(options) {
+        this.register([], options);
+    }
+
+    register(arr, rootModule) {
+        console.log(arr);
+        // 1.按照我们需要的格式创建模块
+        let module = {
+            _raw: rootModule,
+            _state: rootModule.state,
+            _children: {}
+        }
+
+        // 2.保存模块信息
+        if (arr.length === 0) {
+            // 保存根模块
+            this.root = module;
+        } else {
+            // 保存子模块
+            let parent = arr.splice(0, arr.length - 1).reduce((root, currentKey) => {
+                return root._children[currentKey];
+            }, this.root);
+            parent._children[arr[arr.length - 1]] = module;
+        }
+
+        // 3.处理子模块
+        for (let childrenModuleName in rootModule.modules) {
+            let childrenModule = rootModule.modules[childrenModuleName];
+            this.register(arr.concat(childrenModuleName), childrenModule)
+        }
+    }
+}
+
 class Store {
     constructor(options) {
         // this.state = options.state;
@@ -40,6 +74,10 @@ class Store {
 
         // 将传递进来的 actions 放到 Store 上
         this.initActions(options);
+
+        // 提取模块信息
+        this.modules = new ModuleCollection(options);
+        console.log(this.modules);
     }
 
     dispatch = (type, payload) => {// asyncAddAge', 10
