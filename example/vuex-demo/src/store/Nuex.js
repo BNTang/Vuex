@@ -33,7 +33,6 @@ class ModuleCollection {
     }
 
     register(arr, rootModule) {
-        console.log(arr);
         // 1.按照我们需要的格式创建模块
         let module = {
             _raw: rootModule,
@@ -77,7 +76,23 @@ class Store {
 
         // 提取模块信息
         this.modules = new ModuleCollection(options);
-        console.log(this.modules);
+        // console.log(this.modules);
+
+        // 安装子模块的数据
+        this.initModules([], this.modules.root);
+    }
+
+    initModules(arr, module) {
+        console.log(arr);
+        // 如果当前模块是子模块，那么就需要将数据安装到 this.state 上
+        if (arr.length > 0) {
+
+        }
+
+        // 如果当前模块不是子模块，那么就需要从根模块中取出子模块的信息来安装
+        for (let moduleName in module._children) {
+            this.initModules(arr.concat(moduleName), module._children[moduleName]);
+        }
     }
 
     dispatch = (type, payload) => {// asyncAddAge', 10
