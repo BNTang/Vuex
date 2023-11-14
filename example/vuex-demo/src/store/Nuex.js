@@ -83,10 +83,13 @@ class Store {
     }
 
     initModules(arr, module) {
-        console.log(arr);
+        // console.log(arr);
         // 如果当前模块是子模块，那么就需要将数据安装到 this.state 上
         if (arr.length > 0) {
-
+            let parent = arr.splice(0, arr.length - 1).reduce((state, currentKey) => {
+                return state[currentKey];
+            }, this.state);
+            Vue.set(parent, arr[arr.length - 1], module._state);
         }
 
         // 如果当前模块不是子模块，那么就需要从根模块中取出子模块的信息来安装
