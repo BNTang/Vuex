@@ -1,25 +1,25 @@
 <template>
   <div class="hello">
     <p>{{ this.$store.state.globalName }}</p>
-<!--    <p>{{ this.$store.getters.getGlobalName }}</p>-->
-<!--    <button @click="globalFn1">同步操作</button>-->
-<!--    <button @click="globalFn2">异步操作</button>-->
+    <p>{{ this.$store.getters.getGlobalName }}</p>
+    <button @click="globalFn1">同步操作</button>
+    <button @click="globalFn2">异步操作</button>
     <hr/>
     <p>{{ this.$store.state.home.name }}</p>
-<!--    <p>{{ this.$store.state.home.globalName }}</p>-->
-<!--    <p>{{ this.$store.getters.getHomeName }}</p>-->
-<!--    <button @click="homeFn1">同步操作</button>-->
-<!--    <button @click="homeFn2">异步操作</button>-->
+    <p>{{ this.$store.state.home.globalName }}</p>
+    <p>{{ this.$store.getters.getHomeName }}</p>
+    <button @click="homeFn1">同步操作</button>
+    <button @click="homeFn2">异步操作</button>
     <hr/>
     <p>{{ this.$store.state.account.name }}</p>
-<!--    <p>{{ this.$store.getters.getAccountName }}</p>-->
-<!--    <button @click="accountFn1">同步操作</button>-->
-<!--    <button @click="accountFn2">异步操作</button>-->
+    <p>{{ this.$store.getters.getAccountName }}</p>
+    <button @click="accountFn1">同步操作</button>
+    <button @click="accountFn2">异步操作</button>
     <hr/>
     <p>{{ this.$store.state.account.login.name }}</p>
-<!--    <p>{{ this.$store.getters.getLoginName }}</p>-->
-<!--    <button @click="loginFn1">同步操作</button>-->
-<!--    <button @click="loginFn2">异步操作</button>-->
+    <p>{{ this.$store.getters.getLoginName }}</p>
+    <button @click="loginFn1">同步操作</button>
+    <button @click="loginFn2">异步操作</button>
   </div>
 </template>
 
